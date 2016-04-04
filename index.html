@@ -27,32 +27,48 @@
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/app.css" />
-        <title>Hello World</title>
+        <title>Identisnap</title>
     </head>
     <body id="app" ng-controller="appController">
-        <camera capture="capture"></camera>
+      <div id="nav">
+        <div>
+          <img src="img/icons/menu.png">
+          <span>Identisnap</span>
+        </div>
+      </div>
 
-        <!-- DEPENDENCIES -->
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
-        <script type='application/javascript' src='app/dependencies/fastclick.js'></script>
+      <div id="action-button" ng-click="capture()">
+        <div>
+          <img src="img/icons/add.png">
+        </div>
+      </div>
 
-        <!-- APPLICATION -->
-        <script type="text/javascript" src="app/app.js"></script>
-        <script type="text/javascript" src="app/components/camera/camera.directive.js"></script>
+      <!-- DEPENDENCIES -->
+      <script type="text/javascript" src="cordova.js"></script>
+      <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+      <script type='application/javascript' src='app/dependencies/fastclick.js'></script>
 
-        <!-- Manually bootstrap angular when cordova has finished loading -->
-        <script type="text/javascript">
-          angular.element(document).ready(function() {
-             FastClick.attach(document.body);
-             var appElement = document.getElementById('app');
-              angular.bootstrap(appElement, ["identisnap"]);
-          });
+      <!-- APPLICATION -->
+      <script type="text/javascript" src="app/app.js"></script>
+      <script type="text/javascript" src="app/components/camera/camera.directive.js"></script>
+
+      <!-- Manually bootstrap angular when cordova has finished loading -->
+      <script type="text/javascript">
+        if(document.URL.indexOf( 'http://' ) === -1 && document.URL.indexOf( 'https://' ) === -1) {
+          // Running on device
           document.addEventListener("deviceready", function() {
               FastClick.attach(document.body);
               var appElement = document.getElementById('app');
               angular.bootstrap(appElement, ["identisnap"]);
           }, false);
-        </script>
+        } else {
+          // Running in browser
+          angular.element(document).ready(function() {
+             FastClick.attach(document.body);
+             var appElement = document.getElementById('app');
+              angular.bootstrap(appElement, ["identisnap"]);
+          });
+        }
+      </script>
     </body>
 </html>
