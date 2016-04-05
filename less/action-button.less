@@ -1,0 +1,54 @@
+#action-button {
+  position: absolute;
+  display: table-cell;
+  vertical-align: middle;
+  bottom: 15px;
+  right: 15px;
+
+
+  #expand-buttons {
+    width: 100%;
+
+    div {
+      position: relative;
+      width: 35px;
+      height: 35px;
+      margin: 10px auto;
+      border-radius: 50%;
+      background-color: @primary;
+      box-shadow: @shadow2;
+
+      img {
+        position: absolute;
+        width: 40%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+
+  #main-button {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: @accent;
+    box-shadow: @shadow2;
+
+    &.isExpanded {
+      -webkit-transform: rotate(45deg);
+      transform: rotate(45deg);
+      -webkit-transform-origin: 50% 50%;
+      transform-origin: 50% 50%;
+    }
+
+    img {
+      position: absolute;
+      width: 20px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}

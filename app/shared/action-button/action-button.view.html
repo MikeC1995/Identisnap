@@ -1,0 +1,10 @@
+<div id="action-button" ng-click="toggle()">
+  <div id="expand-buttons" ng-show="isExpanded">
+    <div ng-repeat="item in items" ng-click="item.callback()">
+      <img ng-src="{{item.url}}">
+    </div>
+  </div>
+  <div id="main-button" ng-class="{'isExpanded': isExpanded}">
+    <img src="img/icons/add.png">
+  </div>
+</div>

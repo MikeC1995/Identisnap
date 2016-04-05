@@ -36,11 +36,9 @@
           <span>Identisnap</span>
         </div>
       </div>
-
-      <div id="action-button" ng-click="capture()">
-        <div>
-          <img src="img/icons/add.png">
-        </div>
+      <div class="content" id="gallery" ng-controller="galleryController">
+        <div class="place" ng-repeat="place in places" background-image="{{place.url}}" style="background-image: url('img/spin.gif'); background-size: cover; background-position: center;"></div>
+        <action-button items="actionItems"></action-button>
       </div>
 
       <!-- DEPENDENCIES -->
@@ -50,7 +48,9 @@
 
       <!-- APPLICATION -->
       <script type="text/javascript" src="app/app.js"></script>
-      <script type="text/javascript" src="app/components/camera/camera.directive.js"></script>
+      <script type="text/javascript" src="app/components/gallery/gallery.controller.js"></script>
+      <script type="text/javascript" src="app/shared/background-image.directive.js"></script>
+      <script type="text/javascript" src="app/shared/action-button/action-button.directive.js"></script>
 
       <!-- Manually bootstrap angular when cordova has finished loading -->
       <script type="text/javascript">

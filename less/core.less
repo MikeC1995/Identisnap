@@ -40,28 +40,25 @@ html, body {
   }
 }
 
-#action-button {
-  position: absolute;
-  display: table-cell;
-  vertical-align: middle;
-  bottom: 15px;
-  right: 15px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: @accent;
-  box-shadow: @shadow2;
+.content {
+  width: 100%;
+  height: calc(~"100% - 50px");
+}
 
-  div {
-    width: 50px;
-    height: 50px;
-    position: relative;
+#gallery {
+  box-sizing: border-box;
+  padding: 3px;
+  .place {
+    float: left;
+    width: calc(~"50% - 6px");
+    height: 0;
+    padding-bottom: calc(~"50% - 6px"); //ensure square element
+    margin: 3px;
+    background-image: url('img/spin.gif');
+
     img {
-      position: absolute;
-      width: 30%;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      width: 100%;
+      height: auto;
     }
   }
 }
