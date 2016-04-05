@@ -8,12 +8,17 @@ app.controller("viewerController", ["$scope", "placesFactory", "apiFactory", fun
     var imageURI = $scope.place().url;
     apiFactory.locate($scope.place().url)
       .then(function(r) {
-        alert("Success!");
-        $scope.place().location = {
-          lat: r.response.lat,
-          lng: r.response.lng,
+        alert("Success! " + JSON.stringify(r));
+        var result = JSON.parse(r.response);
+        if(result.success) {
+          $scope.place().location = {
+            lat: result.lat,
+            lng: result.lng,
+          }
+          $scope.$apply();
+        } else {
+          alert("Location not recognised!");
         }
-        $scope.$apply();
       }, function(e) {
         alert("Error locating!\nCode: " + e.code);
       });
