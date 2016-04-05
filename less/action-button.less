@@ -8,7 +8,12 @@
 
   #expand-buttons {
     width: 100%;
-
+    transition: all ease-out 0.2s;
+    
+    &.ng-hide div {
+      height: 0;
+      width: 0;
+    }
     div {
       position: relative;
       width: 35px;
@@ -17,6 +22,7 @@
       border-radius: 50%;
       background-color: @primary;
       box-shadow: @shadow2;
+      transition: all ease-out 0.2s;
 
       img {
         position: absolute;
@@ -35,8 +41,10 @@
     border-radius: 50%;
     background-color: @accent;
     box-shadow: @shadow2;
+    transition: all ease-out 0.2s;
 
     &.isExpanded {
+      transition: all ease-out 0.2s;
       -webkit-transform: rotate(45deg);
       transform: rotate(45deg);
       -webkit-transform-origin: 50% 50%;

@@ -1,6 +1,6 @@
 "use strict";
 
-var app = angular.module("identisnap", ['ui.router']);
+var app = angular.module("identisnap", ['ui.router', 'ngAnimate']);
 app.config(function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise("/");
   $stateProvider
