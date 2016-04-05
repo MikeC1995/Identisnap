@@ -1,14 +1,16 @@
 "use strict";
 
 var app = angular.module('identisnap');
-app.controller("galleryController", ["$scope", function($scope) {
-  $scope.places = [];
+app.controller("galleryController", ["$scope", "$state", "placesFactory", function($scope, $state, placesFactory) {
+  $scope.places = placesFactory.getPlaces;
 
-  $scope.uploadPhoto = function(imageURI) {
-    $scope.places.push({
+  function uploadPhoto(imageURI) {
+    var place = {
       url: imageURI
-    });
-    $scope.apply();
+    }
+    placesFactory.addPlace(place);
+    placesFactory.setSelectedPlace(place);
+    $state.go('viewer');
   }
 
   function captureError() {
@@ -20,10 +22,12 @@ app.controller("galleryController", ["$scope", function($scope) {
   }
   function takePhoto() {
     if(!navigator.camera) {
-      $scope.places.push({
+      var place = {
         url: 'img/logo.png'
-      });
-      $scope.selectedPlace = $scope.places[$scope.places.length - 1];
+      }
+      placesFactory.addPlace(place);
+      placesFactory.setSelectedPlace(place);
+      $state.go('viewer');
       return;
     }
     navigator.camera.getPicture($scope.uploadPhoto, captureError, { sourceType: 1, quality:60, destinationType: Camera.DestinationType.FILE_URI });
