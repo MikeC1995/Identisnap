@@ -41,7 +41,7 @@ app.controller("galleryController", ["$scope", "$state", "placesFactory", functi
       captureError();
       return;
     }
-    navigator.camera.getPicture(captured, captureError, { sourceType: sourceType, quality:60, destinationType: Camera.DestinationType.FILE_URI });
+    navigator.camera.getPicture(captured, captureError, { sourceType: sourceType, quality: 50, destinationType: Camera.DestinationType.FILE_URI });
   }
   function choosePhoto() {
     getPicture("gallery");

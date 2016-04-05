@@ -1,4 +1,9 @@
 <div id="viewer">
   <div id="image" background-image="{{place().url}}"></div>
   <div id="map"></div>
+  <div id="meta">
+    <span>Location: {{place().location.lat}},{{place().location.lng}}</span>
+  </div>
+
+  <div id="locate-button" ng-click="locate()"><span>LOCATE</span></div>
 </div>
