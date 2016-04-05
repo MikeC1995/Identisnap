@@ -15,6 +15,13 @@ app.factory('placesFactory', function placesFactory() {
     place._id = uniqueId++;
     places.push(place);
   }
+  placesFactory.removePlace = function(place) {
+    for(var i = 0; i < places.length; i++) {
+      if(places[i]._id == place._id) {
+        places.splice(i, 1);
+      }
+    }
+  }
 
   placesFactory.getSelectedPlace = function() {
     return places[selectedIndex];

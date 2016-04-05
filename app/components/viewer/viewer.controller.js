@@ -1,15 +1,17 @@
 "use strict";
 
 var app = angular.module('identisnap');
-app.controller("viewerController", ["$scope", "placesFactory", "apiFactory", function($scope, placesFactory, apiFactory) {
+app.controller("viewerController", ["$scope", "$state", "placesFactory", "apiFactory", function($scope, $state, placesFactory, apiFactory) {
   $scope.place = placesFactory.getSelectedPlace;
+  $scope.isLoading = true;
 
   $scope.locate = function() {
+    $scope.isLoading = true;
     var imageURI = $scope.place().url;
     apiFactory.locate($scope.place().url)
       .then(function(r) {
-        alert("Success! " + JSON.stringify(r));
         var result = JSON.parse(r.response);
+        $scope.isLoading = false;
         if(result.success) {
           $scope.place().location = {
             lat: result.lat,
@@ -18,9 +20,16 @@ app.controller("viewerController", ["$scope", "placesFactory", "apiFactory", fun
           $scope.$apply();
         } else {
           alert("Location not recognised!");
+          placesFactory.removePlace($scope.place());
+          $state.go('gallery');
         }
       }, function(e) {
-        alert("Error locating!\nCode: " + e.code);
+        alert("Error locating!");
+        $scope.isLoading = false;
+        placesFactory.removePlace($scope.place());
+        $state.go('gallery');
       });
   }
+
+  $scope.locate();
 }]);

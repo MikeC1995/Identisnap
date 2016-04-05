@@ -2,8 +2,10 @@
   <div id="image" background-image="{{place().url}}"></div>
   <div map id="map-section" location="{{place().location}}"></div>
   <div id="meta">
-    <span>Location: {{place().location.lat}},{{place().location.lng}}</span>
+    <div id="loading" ng-show="isLoading">
+      <img src="img/spin.gif">
+      <span>Locating...</span>
+    </div>
   </div>
 
-  <div id="locate-button" ng-click="locate()"><span>LOCATE</span></div>
 </div>

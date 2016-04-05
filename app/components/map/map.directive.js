@@ -18,19 +18,20 @@ app.directive('map', ['loadGoogleMapAPI', function(loadGoogleMapAPI) {
 
       $scope.initialize = function() {
         $scope.map = new google.maps.Map(document.getElementById($scope.mapId), {
-          zoom: 8,
+          zoom: 16,
           center: { lat: 51.455797, lng: -2.604160 },
           disableDefaultUI: true
         });
 
         $scope.$watch('location', function(newLoc) {
+          var newLoc = JSON.parse(newLoc);
           if(!newLoc || !newLoc.lat || !newLoc.lng) return;
           if($scope.marker) $scope.marker.setMap(null);
           $scope.marker = new google.maps.Marker({
             position: newLoc,
             map: $scope.map
           });
-          $scope.map.panTo($scope.marker.location);
+          $scope.map.panTo($scope.marker.position);
         }, true);
       }
     }
