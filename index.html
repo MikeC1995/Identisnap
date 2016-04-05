@@ -36,19 +36,17 @@
           <span>Identisnap</span>
         </div>
       </div>
-      <div class="content" id="gallery" ng-controller="galleryController">
-        <div class="place" ng-repeat="place in places" background-image="{{place.url}}" style="background-image: url('img/spin.gif'); background-size: cover; background-position: center;"></div>
-        <action-button items="actionItems"></action-button>
-      </div>
+      <div class="content" ui-view></div>
 
       <!-- DEPENDENCIES -->
       <script type="text/javascript" src="cordova.js"></script>
       <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+      <script type="text/javascript" src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
       <script type='application/javascript' src='app/dependencies/fastclick.js'></script>
 
       <!-- APPLICATION -->
       <script type="text/javascript" src="app/app.js"></script>
-      <script type="text/javascript" src="app/components/gallery/gallery.controller.js"></script>
+      <script type="text/javascript" src="app/shared/gallery/gallery.controller.js"></script>
       <script type="text/javascript" src="app/shared/background-image.directive.js"></script>
       <script type="text/javascript" src="app/shared/action-button/action-button.directive.js"></script>
 
