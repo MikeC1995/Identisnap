@@ -30,7 +30,7 @@ app.controller("galleryController", ["$scope", "$state", "placesFactory", functi
       $state.go('viewer');
       return;
     }
-    navigator.camera.getPicture($scope.uploadPhoto, captureError, { sourceType: 1, quality:60, destinationType: Camera.DestinationType.FILE_URI });
+    navigator.camera.getPicture(uploadPhoto, captureError, { sourceType: 1, quality:60, destinationType: Camera.DestinationType.FILE_URI });
   }
 
   // Action button items

@@ -14,6 +14,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
       controller: 'viewerController'
     });
 });
-app.controller("appController", ["$scope", function($scope) {
+app.controller("appController", ["$scope", "$state", function($scope, $state) {
+  $scope.$state = $state;
 
+  $scope.navClicked = function() {
+    if($state.is('viewer')) {
+      $state.go('gallery');
+    }
+  }
 }]);

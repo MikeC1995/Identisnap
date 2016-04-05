@@ -32,7 +32,7 @@
     <body id="app" ng-controller="appController">
       <div id="nav">
         <div>
-          <img src="img/icons/menu.png">
+          <img ng-src="{{ $state.is('gallery') ? 'img/icons/menu.png' : 'img/icons/back.png' }} " ng-click="navClicked()">
           <span>Identisnap</span>
         </div>
       </div>
