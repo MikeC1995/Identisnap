@@ -6,7 +6,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('gallery', {
       url: "/",
-      templateUrl: "app/shared/gallery/gallery.view.html",
+      templateUrl: "app/components/gallery/gallery.view.html",
       controller: 'galleryController'
     });
 });
