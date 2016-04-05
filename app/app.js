@@ -23,3 +23,4 @@ app.controller("appController", ["$scope", "$state", function($scope, $state) {
     }
   }
 }]);
+app.value('mapApiKey', 'AIzaSyCP5BKla9RY0aObtlovjVzIBV2XEsfYj48');
