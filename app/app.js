@@ -12,13 +12,17 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('viewer', {
       templateUrl: "app/components/viewer/viewer.view.html",
       controller: 'viewerController'
+    })
+    .state('add-place', {
+      templateUrl: "app/components/add-place/add-place.view.html",
+      controller: 'addPlaceController'
     });
 });
 app.controller("appController", ["$scope", "$state", function($scope, $state) {
   $scope.$state = $state;
 
   $scope.navClicked = function() {
-    if($state.is('viewer')) {
+    if($state.is('viewer') || $state.is('add-place')) {
       $state.go('gallery');
     }
   }

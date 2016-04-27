@@ -56,6 +56,9 @@ app.controller("galleryController", ["$scope", "$state", "placesFactory", functi
   function takePhoto() {
     getPicture("camera");
   }
+  function addPlace() {
+    $state.go('add-place');
+  }
 
   $scope.openPlace = function(place) {
     placesFactory.setSelectedPlace(place);
@@ -64,6 +67,9 @@ app.controller("galleryController", ["$scope", "$state", "placesFactory", functi
 
   // Action button items
   $scope.actionItems = [{
+    url: 'img/icons/place.png',
+    callback: addPlace
+  },{
     url: 'img/icons/camera.png',
     callback: takePhoto
   },{
