@@ -4,7 +4,7 @@ var app = angular.module('identisnap');
 app.factory('apiFactory', ["$http", function apiFactory($http) {
   var apiFactory = {};
 
-  var urlBase = "http://188.166.84.247:5000";
+  var urlBase = "http://139.59.169.128:5000";
 
   apiFactory.locate = function(imageURI) {
     return new Promise(function(resolve, reject) {

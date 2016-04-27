@@ -6,6 +6,9 @@
       <img src="img/spin.gif">
       <span>Locating...</span>
     </div>
+    <span id="name" ng-show="!isLoading">{{place().place.name}}</span>
+    <span id="address" ng-show="!isLoading">{{place().place.address}}</span>
+    <span id="description" ng-show="!isLoading">{{place().place.description}}</span>
   </div>
 
 </div>

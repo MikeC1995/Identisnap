@@ -13,10 +13,12 @@ app.controller("viewerController", ["$scope", "$state", "placesFactory", "apiFac
         var result = JSON.parse(r.response);
         $scope.isLoading = false;
         if(result.success) {
+          //TODO: currently uses predicted latlng, not "ground truth" lat lng
           $scope.place().location = {
             lat: result.lat,
             lng: result.lng,
           }
+          $scope.place().place = JSON.parse(result.places)[0];
           $scope.$apply();
         } else {
           alert("Location not recognised!");
@@ -31,5 +33,11 @@ app.controller("viewerController", ["$scope", "$state", "placesFactory", "apiFac
       });
   }
 
-  $scope.locate();
+  if($scope.place().place === undefined)
+  {
+    $scope.isLoading = true;
+    $scope.locate();
+  } else {
+    $scope.isLoading = false;
+  }
 }]);

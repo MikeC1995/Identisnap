@@ -1,4 +1,9 @@
 <div id="gallery">
+  <div id="empty-state" ng-show="places().length == 0">
+      <img src="img/cityscape.png">
+      <span id="title">Nothing here yet.</span>
+      <span id="subtitle">Take a snap to get started!</span>
+  </div>
   <div class="place" ng-click="openPlace(place)" ng-repeat="place in places()" background-image="{{place.url}}" style="background-image: url('img/spin.gif'); background-size: cover; background-position: center;"></div>
   <action-button items="actionItems"></action-button>
 </div>
