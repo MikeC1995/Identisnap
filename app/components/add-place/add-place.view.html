@@ -1,1 +1,6 @@
-<div>TEST</div>
+<div id="add-place">
+  <input id="add-place-search" type="text" placeholder="Search for a location..." ng-model="name" required></input>
+  <div add-place-map ng-model="location" name="name" address="address" id="add-place-map" class="map"></div>
+  <textarea id="description" ng-model="description" type="text" placeholder="Add a description for this place..."></textarea>
+  <div id="add-button" ng-class="{'disabled': isDisabled() }" ng-click="addPlace()"><img src="img/icons/tick.png"></div>
+</div>

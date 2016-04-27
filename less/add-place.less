@@ -1,0 +1,60 @@
+#add-place {
+  width: 100%;
+  height: 100%;
+  #add-place-search {
+    width: calc(~"100% - 30px");
+    margin-top: 15px;
+    margin-left: 15px;
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    border: none;
+    border-radius: 3px;
+    box-sizing: border-box;
+    padding: 15px;
+    box-shadow: @shadow1;
+    &:focus {
+      outline: none;
+    }
+  }
+  .map {
+    // override padding for full width
+    width: 100%;
+    height: 60%;
+    background-color: transparent;
+  }
+  #description {
+    width: 100%;
+    height: 30%;
+    resize: none;
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    border: none;
+    box-sizing: border-box;
+    padding: 15px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  #add-button {
+    position: relative;
+    width: 100%;
+    height: 10%;
+    text-align: center;
+    &.disabled {
+      background-color: @disabled;
+    }
+    &:not(.disabled) {
+      background-color: @accent;
+    }
+
+    img {
+      position: absolute;
+      width: 20px;
+      height: auto;
+      left: calc(~"50% - 10px");
+      top: calc(~"50% - 10px");
+    }
+  }
+}

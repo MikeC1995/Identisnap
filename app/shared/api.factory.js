@@ -21,5 +21,22 @@ app.factory('apiFactory', ["$http", function apiFactory($http) {
     });
   }
 
+  apiFactory.addPlace = function(place) {
+    return new Promise(function(resolve, reject) {
+      $http({
+        method: "POST",
+        url: urlBase + "/place",
+        headers: { 'Content-Type': 'application/json' },
+        data: place
+      }).then(function(r) {
+        console.log(r);
+        resolve();
+      }, function(r) {
+        console.log(r);
+        reject();
+      });
+    });
+  }
+
   return apiFactory;
 }]);
