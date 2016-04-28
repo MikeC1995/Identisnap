@@ -45,31 +45,38 @@ modals.directive('addPlaceMap', ['loadGoogleMapAPI', function(loadGoogleMapAPI) 
           });
 
           // When a place is selected
-          autocomplete.addListener('place_changed', function() {
-            marker.setVisible(false);
-            var place = autocomplete.getPlace();
-            $scope.name = place.name;
-            $scope.address = place.formatted_address;
-            if (!place.geometry) {
-              window.alert("Autocomplete's returned place contains no geometry");
-              return;
-            }
+          function setPlace(place) {
+            if(!place) {
+              marker.setVisible(false);
+              place = autocomplete.getPlace();
+              $scope.name = place.name;
+              $scope.address = place.formatted_address;
+              if (!place.geometry) {
+                window.alert("Autocomplete's returned place contains no geometry");
+                return;
+              }
 
-            // If the place has a geometry, then present it on a map.
-            if (place.geometry.viewport) {
-              $scope.map.fitBounds(place.geometry.viewport);
-            } else {
-              $scope.map.setCenter(place.geometry.location);
-              $scope.map.setZoom(17);  // Why 17? Because it looks good.
+              // If the place has a geometry, then present it on a map.
+              if (place.geometry.viewport) {
+                $scope.map.fitBounds(place.geometry.viewport);
+              } else {
+                $scope.map.setCenter(place.geometry.location);
+                $scope.map.setZoom(17);  // Why 17? Because it looks good.
+              }
+              marker.setIcon(/** @type {google.maps.Icon} */({
+                url: place.icon,
+                size: new google.maps.Size(71, 71),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(17, 34),
+                scaledSize: new google.maps.Size(35, 35)
+              }));
             }
-            marker.setIcon(/** @type {google.maps.Icon} */({
-              url: place.icon,
-              size: new google.maps.Size(71, 71),
-              origin: new google.maps.Point(0, 0),
-              anchor: new google.maps.Point(17, 34),
-              scaledSize: new google.maps.Size(35, 35)
-            }));
-            marker.setPosition(place.geometry.location);
+            if(place.geometry) {
+              var location = place.geometry.location;
+              place = {};
+              place = location;
+            }
+            marker.setPosition(place);
             marker.setVisible(true);
 
             // Apply a listener to the Autocomplete so we can update the
@@ -79,11 +86,15 @@ modals.directive('addPlaceMap', ['loadGoogleMapAPI', function(loadGoogleMapAPI) 
               input.controller('ngModel').$setViewValue(input.val());
               // update our the model with the location data so it is reflected in the controller
               model.$setViewValue({
-                lat:  place.geometry.location.lat(),
-                lng:  place.geometry.location.lng()
+                lat:  place.lat(),
+                lng:  place.lng()
               });
             });
+          }
+          google.maps.event.addListener($scope.map, 'click', function(event) {
+            setPlace(event.latLng);
           });
+          autocomplete.addListener('place_changed', setPlace);
         }
       }
   };

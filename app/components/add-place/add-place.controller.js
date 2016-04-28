@@ -7,24 +7,45 @@ app.controller("addPlaceController", ["$scope", "$state", "apiFactory", function
   $scope.address = undefined;
   $scope.description = undefined;
 
+  $scope.dialogOpen = false;
+
   $scope.addPlace = function() {
-    console.log($scope.location);
-    console.log($scope.name);
-    console.log($scope.address);
-    console.log($scope.description);
+    if($scope.getDisabled() == "disabled") {
+      return;
+    }
+    $scope.closeDialog();
     apiFactory.addPlace({
       location: $scope.location,
       name: $scope.name,
       address: $scope.address,
       description: $scope.description
     }).then(function() {
-      console.log("success");
+      alert("Thanks! Your place was added.");
+      $state.go('gallery');
     }, function() {
-      console.log("error");
+      alert("Sorry, we were unable to add your place!");
     });
   }
 
-  $scope.isDisabled = function() {
-    return ($scope.name === undefined || $scope.address === undefined || $scope.description === undefined || $scope.description.trim() === "" || $scope.location === undefined);
+  $scope.getDisabled = function () {
+    if($scope.location == "" || $scope.location === undefined ||
+       $scope.name == "" || $scope.name === undefined ||
+       $scope.address == "" || $scope.address === undefined ||
+       $scope.description == "" || $scope.description === undefined) {
+
+         return "disabled";
+     } else {
+       return "";
+     }
+  }
+
+  $scope.closeDialog = function () {
+    $scope.dialogOpen = false;
+  }
+  $scope.openDialog = function () {
+    $scope.dialogOpen = true;
+  }
+  $scope.isDialogOpen = function() {
+    return $scope.dialogOpen;
   }
 }]);

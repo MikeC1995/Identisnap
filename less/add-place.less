@@ -1,4 +1,5 @@
 #add-place {
+  position: relative;
   width: 100%;
   height: 100%;
   #add-place-search {
@@ -19,42 +20,124 @@
   .map {
     // override padding for full width
     width: 100%;
-    height: 60%;
+    height: 100%;
     background-color: transparent;
   }
-  #description {
-    width: 100%;
-    height: 30%;
-    resize: none;
-    font-family: "Open Sans", sans-serif;
-    font-size: 14px;
-    border: none;
-    box-sizing: border-box;
-    padding: 15px;
 
-    &:focus {
-      outline: none;
-    }
-  }
+  #accept-location {
+    position: absolute;
+    bottom: 20px;
+    left: calc(~"50% - 25px");
+    border-radius: 50%;
+    background-color: @accent;
+    box-shadow: @shadow1;
+    transition: all 0.2s ease-out;
 
-  #add-button {
-    position: relative;
-    width: 100%;
-    height: 10%;
-    text-align: center;
-    &.disabled {
-      background-color: @disabled;
-    }
     &:not(.disabled) {
-      background-color: @accent;
+      width: 50px;
+      height: 50px;
+    }
+
+    &.disabled {
+      width: 0;
+      height: 0;
     }
 
     img {
-      position: absolute;
       width: 20px;
       height: auto;
-      left: calc(~"50% - 10px");
-      top: calc(~"50% - 10px");
+      margin-top: 15px;
+      margin-left: 15px;
+    }
+  }
+
+  #overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #000;
+    opacity: 0.5;
+    z-index: 1000;
+  }
+  #info-dialog {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    z-index: 1001;
+    background-color: #fff;
+    border-radius: 15px;
+    padding-top: 30px;
+    text-align: center;
+    box-shadow: @shadow2;
+
+    #title {
+      display: block;
+      font-family: "Open Sans", sans-serif;
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+
+    input {
+      width: 90%;
+      margin: auto;
+      box-sizing: border-box;
+      padding: 10px 15px;
+      margin-bottom: 20px;
+      font-family: "Open Sans", sans-serif;
+      font-size: 14px;
+      border: none;
+      border-bottom: solid 2px @disabled;
+      &:focus {
+        outline: none;
+        border-bottom: solid 2px @primary;
+      }
+    }
+
+    #description {
+      width: 90%;
+      height: 150px;
+      font-family: "Open Sans", sans-serif;
+      font-size: 14px;
+      resize: none;
+      border: none;
+      border-bottom: solid 2px @disabled;
+      box-sizing: border-box;
+      padding: 15px;
+
+      &:focus {
+        outline: none;
+        border-bottom: solid 2px @primary;
+      }
+    }
+
+    #buttons {
+      width: 100%;
+      height: 50px;
+      text-align: right;
+      box-sizing: border-box;
+      padding: 0 20px;
+      span {
+        display: inline-block;
+        height: 50px;
+        line-height: 50px;
+        font-family: "Open Sans", sans-serif;
+        font-size: 14px;
+        text-transform: uppercase;
+        color: @primary;
+        box-sizing: border-box;
+        padding: 0 20px;
+
+        &:hover {
+          background-color: @disabled-light;
+        }
+
+        &.disabled {
+          color: @disabled;
+        }
+      }
     }
   }
 }

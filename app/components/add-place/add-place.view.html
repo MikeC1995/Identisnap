@@ -1,6 +1,18 @@
 <div id="add-place">
   <input id="add-place-search" type="text" placeholder="Search for a location..." ng-model="name" required></input>
   <div add-place-map ng-model="location" name="name" address="address" id="add-place-map" class="map"></div>
-  <textarea id="description" ng-model="description" type="text" placeholder="Add a description for this place..."></textarea>
-  <div id="add-button" ng-class="{'disabled': isDisabled() }" ng-click="addPlace()"><img src="img/icons/tick.png"></div>
+  <div id="accept-location" ng-class="{ disabled: location === undefined }" ng-click="openDialog()">
+    <img src="img/icons/tick.png">
+  </div>
+  <div id="overlay" ng-show="isDialogOpen()"></div>
+  <div id="info-dialog" ng-show="isDialogOpen()">
+    <span id="title">Add Place Details</span>
+    <input id="name" ng-model="name" type="text" placeholder="Name of place..."></input>
+    <input id="address" ng-model="address" type="text" placeholder="Address of place"></input>
+    <textarea id="description" ng-model="description" type="text" placeholder="Add a description for this place..."></textarea>
+    <div id="buttons">
+      <span ng-click="closeDialog()">CANCEL</span>
+      <span ng-click="addPlace()" ng-class="getDisabled()">OK</span>
+    </div>
+  </div>
 </div>
