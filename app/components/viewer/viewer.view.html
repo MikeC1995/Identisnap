@@ -14,8 +14,8 @@
     <div id="place-add" ng-show="place().place === undefined && !isLoading">
       <span id="title">We don't recognise this place!</span>
       <span id="subtitle">Can you tell us more about it?</span>
-      <div id="button-yes"><span>Yeah, I can!</span></div>
-      <div id="button-no"><span>No, Sorry.</span></div>
+      <div id="button-yes" ng-click="goToAddPlace()"><span>Yeah, I can!</span></div>
+      <div id="button-no" ng-click="goToGallery()"><span>No, Sorry.</span></div>
     </div>
   </div>
 

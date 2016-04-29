@@ -33,6 +33,14 @@ app.controller("viewerController", ["$scope", "$state", "placesFactory", "apiFac
       });
   }
 
+  $scope.goToGallery = function() {
+    $state.go('gallery');
+  }
+
+  $scope.goToAddPlace = function() {
+    $state.go('add-place');
+  }
+
   if($scope.place().place === undefined)
   {
     $scope.isLoading = true;

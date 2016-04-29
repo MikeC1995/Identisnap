@@ -12,8 +12,8 @@
     <body id="app" ng-controller="appController">
       <div id="nav">
         <div>
-          <img ng-src="{{ $state.is('gallery') ? 'img/icons/menu.png' : 'img/icons/back.png' }} " ng-click="navClicked()">
-          <span>Identisnap</span>
+          <img id="menu-icon" ng-src="{{ $state.is('gallery') ? 'img/icons/menu.png' : 'img/icons/back.png' }} " ng-click="navClicked()">
+          <img id="logo" src="img/logo.png">
         </div>
       </div>
       <div class="content" ui-view></div>
